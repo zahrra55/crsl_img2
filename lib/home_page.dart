@@ -1,3 +1,4 @@
+import 'package:crsl_img/login.dart';
 import 'package:crsl_img/orderInfo.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,60 @@ class page1 extends StatefulWidget {
 }
 
 class _page1State extends State<page1> {
+  final List types = [
+    {
+      'photo':'images/Seafood-platter.jpg',
+      'name':'Sea food',
+    },
+    {
+      'photo':'images/dessert.jpg',
+      'name':'Dessert',
+    },
+    {
+      'photo':'images/vegetables_detailfeature.jpg',
+      'name':'Vegetables',
+    },
+    {
+      'photo':'images/paleo-meat-array.png',
+      'name':'Meat',
+    },
+  ];
+  final List restrunts = [
+    {
+      'photo':'images/meat.jpg',
+      'name':'Meat with mousil dough',
+    },
+    {
+      'photo':'images/kabab.jpg',
+      'name':'Baghdad Juuili Grill',
+    },
+    {
+      'photo':'images/meat.jpg',
+      'name':'Meat with mousil dough',
+    },
+  ];
+  final List typeLine = [
+    {
+      'icon':Icon(Icons.home_outlined,color: Colors.grey,size: 20,),
+      'name':'Home',
+    },
+    {
+      'icon':Icon(Icons.wallet,color: Colors.grey,size: 20,),
+      'name':'Wallet',
+    },
+    {
+      'icon':Icon(Icons.card_giftcard,color: Colors.grey,size: 20,),
+      'name':'delivery',
+    },
+    {
+      'icon':Icon(Icons.star_border_rounded,color: Colors.grey,size: 20,),
+      'name':'Exclusive',
+    },
+    {
+      'icon':Icon(Icons.maps_home_work_outlined,color: Colors.grey,size: 20,),
+      'name':'New',
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,184 +87,156 @@ class _page1State extends State<page1> {
       ),
       body: Center(
         child:
-       ListView(
-         scrollDirection: Axis.vertical,
-         children: [
-           Column(
-             crossAxisAlignment: CrossAxisAlignment.start,
-             children: [
+            ListView.builder(itemCount: 1, itemBuilder: (BuildContext context,index){
+              return  Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(bottom: 15),
+                    width: MediaQuery.of(context).size.width,
+                    height: 112,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount:types.length,
+                      itemBuilder: (BuildContext context,index){
+                        return
+                          Container(
+                            margin: EdgeInsets.only(left: 7,right: 4,top: 7),
+                            padding: EdgeInsets.all(5),
+                            width: 100,height: 100,
 
-               Container(
-                 margin: EdgeInsets.only(bottom: 15),
-                 width: MediaQuery.of(context).size.width,
-                 height: 112,
-                 child: ListView(
-                   scrollDirection: Axis.horizontal,
+                            child:  Column(
+                              children: [
+                                Container(
+                                  width: 80,height: 70,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.grey,
+                                      image: DecorationImage(
+                                        image: AssetImage(types[index]['photo']),
+                                        fit: BoxFit.cover,
+                                      )
+                                  ),
 
-                   children: [
-                     FoodTypes('images/Seafood-platter.jpg','Sea Food'),
-                     FoodTypes('images/dessert.jpg','dessert'),
-                     FoodTypes('images/vegetables_detailfeature.jpg','Vegetabls'),
-                     FoodTypes('images/paleo-meat-array.png','Meat'),
-                   ],
-                 ),
-               ),
-               Row(
-                 children: [
-                   SizedBox(width: 15,),
-                   Column(
-                     mainAxisAlignment: MainAxisAlignment.start,
-                     crossAxisAlignment: CrossAxisAlignment.start,
-                     children: [
-                       Text('Nearest restrusnts',style: TextStyle(color: Colors.red),),
-                     ],
-                   ),
-                 ],
-               ),
-               Container(
-                 width: 144,
-                 height: 2,
-                 color: Colors.red,
-                 margin: EdgeInsets.only(top: 3,bottom: 5),
-               ),
-               Container(
-                 width: MediaQuery.of(context).size.width,
-                 height: 149,
-                 child: ListView(
-                   scrollDirection: Axis.horizontal,
-
-                   children: [
-                     restrunt('images/meat.jpg','Meat with mousli dough'),
-                     restrunt('images/kabab.jpg','Baghdad Juili Grill'),
-                     restrunt('images/meat.jpg','Meat with mousli dough'),
-                   ],
-                 ),
-               ),
-               Container(
-                 margin: EdgeInsets.only(top: 15),
-                 width: MediaQuery.of(context).size.width,
-                 height: 45,
-                 child: ListView(
-                   scrollDirection: Axis.horizontal,
-                   children: [
-                     Container(
-                       width: 78,
-                       height: 40,
-                       margin: EdgeInsets.only(left: 10,top: 10,right: 0),
-                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(50),
-                         color: Colors.red,
-                       ),
-                       child: Center(
-                         child: Row(
-                           children: [
-                             SizedBox(width: 8,),
-                             Icon(Icons.home_outlined,color: Colors.white,size: 20,),
-                             SizedBox(width: 3,),
-                             Text('Home',style: TextStyle(color: Colors.white,fontSize: 13),),
-                           ],
-                         ),
-                       ),
-
-
-                     ),
-                     Container(
-                       width: 136,
-                       height: 40,
-                       margin: EdgeInsets.only(left: 10,top: 10,right: 0),
-                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(50),
-                         color: Colors.grey.withOpacity(0.2),
-                       ),
-                       child: Center(
-                         child: Row(
-                           children: [
-                             SizedBox(width: 8,),
-                             Icon(Icons.wallet,color: Colors.grey,size: 20,),
-                             SizedBox(width: 3,),
-                             Text('Supports wallet',style: TextStyle(color: Colors.grey,fontSize: 13),),
-                           ],
-                         ),
-                       ),
-
-
-                     ),
-                     Container(
-                       width: 116,
-                       height: 40,
-                       margin: EdgeInsets.only(left: 10,top: 10,right: 0),
-                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(50),
-                         color: Colors.grey.withOpacity(0.2),
-                       ),
-                       child: Center(
-                         child: Row(
-                           children: [
-                             SizedBox(width: 8,),
-                             Icon(Icons.card_giftcard,color: Colors.grey,size: 20,),
-                             SizedBox(width: 3,),
-                             Text('Free delevary',style: TextStyle(color: Colors.grey,fontSize: 13),),
-                           ],
-                         ),
-                       ),
-
-
-                     ),
-                     Container(
-                       width: 96,
-                       height: 40,
-                       margin: EdgeInsets.only(left: 10,top: 10,right: 0),
-                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(50),
-                         color: Colors.grey.withOpacity(0.2),
-                       ),
-                       child: Center(
-                         child: Row(
-                           children: [
-                             SizedBox(width: 8,),
-                             Icon(Icons.star_border_rounded,color: Colors.grey,size: 20,),
-                             SizedBox(width: 3,),
-                             Text('Exclusive',style: TextStyle(color: Colors.grey,fontSize: 13),),
-                           ],
-                         ),
-                       ),
+                                ),
+                                Text(types[index]['name'],style:TextStyle(fontSize: 14) ,),
+                              ],
+                            ),
+                          );
+                      },
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(width: 15,),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Nearest restrusnts',style: TextStyle(color: Colors.red),),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Container(
+                    width: 144,
+                    height: 2,
+                    color: Colors.red,
+                    margin: EdgeInsets.only(top: 3,bottom: 5),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 149,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount:restrunts.length,
+                      itemBuilder: (BuildContext context,index){
+                        return
+                          Container(
+                            margin: EdgeInsets.only(left: 7,right: 4,top: 7),
+                            padding: EdgeInsets.only(left: 15,top: 7),
+                            width: 300,height: 130,
+                            child:  Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 270,height: 100,
+                                  margin: EdgeInsets.only(bottom: 5),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.grey,
+                                      image: DecorationImage(
+                                        image: AssetImage(restrunts[index]['photo']),
+                                        fit: BoxFit.fill,
+                                      )
+                                  ),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(top: 10,left: 10),
+                                        width: 30,height: 30,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: Colors.white.withOpacity(0.9),
+                                        ),
+                                        child: Icon(Icons.bike_scooter_outlined,color: Colors.red,size: 20,),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Text(restrunts[index]['name'],style:TextStyle(fontSize: 16,color: Colors.red) ,),
+                              ],
+                            ),
+                          );
+                      },
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 45,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount:typeLine.length,
+                      itemBuilder: (BuildContext context,index){
+                        return
+                          Container(
+                            width: 88,
+                            height: 45,
+                            margin: EdgeInsets.only(left: 7,top: 10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Colors.grey.withOpacity(0.2),
+                            ),
+                            child: Center(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  typeLine[index]['icon'],
+                                  SizedBox(width: 3,),
+                                  Text(typeLine[index]['name'],style: TextStyle(color: Colors.grey,fontSize: 13),),
+                                ],
+                              ),
+                            ),
 
 
-                     ),
-                     Container(
-                       width: 70,
-                       height: 40,
-                       margin: EdgeInsets.only(left: 10,top: 10,right: 0),
-                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(50),
-                         color: Colors.grey.withOpacity(0.2),
-                       ),
-                       child: Center(
-                         child: Row(
-                           children: [
-                             SizedBox(width: 8,),
-                             Icon(Icons.home_work_outlined,color: Colors.grey,size: 20,),
-                             SizedBox(width: 3,),
-                             Text('New',style: TextStyle(color: Colors.grey,fontSize: 13),),
-                           ],
-                         ),
-                       ),
+                          );
 
+                      },
+                    ),
+                  ),
+                  meal('images/burger.jpg','Fire Fire',4000),
+                  meal('images/shawarma.jpg','Al_kass ',5000),
+                ],
+              );
+            }),
 
-                     ),
-                   ],
-                 ),
-               ),
-               meal('images/burger.jpg','Fire Fire',4000),
-               meal('images/shawarma.jpg','Al_kass ',5000),
-             ],
-           ),
-         ],
-       ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-          fixedColor: Colors.black,
+          //fixedColor: Colors.black,
           type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.red,
           items: [
             BottomNavigationBarItem(
               label: 'Home',
@@ -225,74 +252,15 @@ class _page1State extends State<page1> {
             ),
             BottomNavigationBarItem(
               label: 'Account',
-              icon:Icon(Icons.account_circle_outlined),
+              icon:GestureDetector(
+                onTap: (){
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => loginpage()));
+                },
+                child: Icon(Icons.account_circle_outlined),
+              )
             ),
           ]),
-    );
-  }
-  Container FoodTypes(String img,String title){
-    return Container(
-      margin: EdgeInsets.only(left: 7,right: 4,top: 7),
-      padding: EdgeInsets.all(5),
-      width: 100,height: 100,
-
-        child:  Column(
-          children: [
-            Container(
-              width: 80,height: 70,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.grey,
-                  image: DecorationImage(
-                    image: AssetImage(img),
-                    fit: BoxFit.cover,
-                  )
-              ),
-
-            ),
-             Text(title,style:TextStyle(fontSize: 14) ,),
-
-          ],
-        ),
-    );
-  }
-  Container restrunt(String photo,String name){
-    return Container(
-      margin: EdgeInsets.only(left: 7,right: 4,top: 7),
-      padding: EdgeInsets.only(left: 15,top: 7),
-      width: 300,height: 130,
-      child:  Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 270,height: 100,
-            margin: EdgeInsets.only(bottom: 5),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.grey,
-                image: DecorationImage(
-                  image: AssetImage(photo),
-                  fit: BoxFit.fill,
-                )
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(top: 10,left: 10),
-                  width: 30,height: 30,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white.withOpacity(0.9),
-                  ),
-                  child: Icon(Icons.bike_scooter_outlined,color: Colors.red,size: 20,),
-                )
-              ],
-            ),
-          ),
-          Text(name,style:TextStyle(fontSize: 16,color: Colors.red) ,),
-        ],
-      ),
     );
   }
   Container meal(String photo,String name,int price){
@@ -389,8 +357,6 @@ class _page1State extends State<page1> {
                   ],),
                 ],
               ),
-
-
             ],
           ),
         ],

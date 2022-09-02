@@ -1,4 +1,5 @@
-
+import 'package:crsl_img/home_page.dart';
+import 'package:crsl_img/login.dart';
 import 'package:flutter/material.dart';
 
 import 'splash.dart';
